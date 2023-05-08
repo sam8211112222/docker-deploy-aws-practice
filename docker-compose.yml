@@ -1,28 +1,8 @@
-# 如果不使用docker compose設置 run command 就要每次打一長串docker run command
-# eg: docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app b83ce5b0ded3bc69be24427f951d330df5c0c68e10fedcf9c667f6bd9a0ef9b3
-# 當我們使用 docker run -v xxx:xxx 的意思是 將container內的xxx對應到實體主機的xxx檔案位置
-# 而當 -v /xxx 後面沒有分號, 代表不去對應
 version: "3"
 services:
   web:
-    # 在一般情況下若沒有客制dockerfile名稱, 則使用 build: . 就可以了
-    # 這個例子是示範當dockerfile名稱非預設時的狀況
     build:
-      # .代表當前工作目錄
       context: .
-      # 找尋特定dockerfile
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"
-    volumes:
-      - /app/node_modules
-      - .:/app
-  # 定義test service
-  tests:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-    volumes:
-      - /app/node_modules
-      - .:/app
-    command: ["npm", "run", "test"]
+      - "80:80"
