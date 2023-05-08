@@ -1,0 +1,14 @@
+# 要build客製的dockerfile的命令如下
+# docker build -f Dockerfile.dev . 
+
+FROM node:16-alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+CMD ["npm","run","start"]
