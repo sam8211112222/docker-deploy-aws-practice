@@ -9,7 +9,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <p>蔡英文下台!</p>
+        <p className="App-intro">I was changed on the feature branch</p>
       </header>
     </div>
   );
